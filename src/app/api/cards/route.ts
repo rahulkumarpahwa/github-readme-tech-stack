@@ -1,6 +1,7 @@
 import CardBuilder from "@/lib/card/card-builder";
 import SvgGenerator from "@/lib/card/svg-generator";
 import { parseWidth, validateLine } from "@/lib/utils/validator";
+import escape from "lodash.escape";
 import { NextResponse } from "next/server";
 
 export const GET = async (req: Request) => {
@@ -27,7 +28,7 @@ export const GET = async (req: Request) => {
   const titleAlign = params.get("titleAlign");
 
   const card = new CardBuilder()
-    .title(title?.toString())
+    .title(escape(title?.toString()))
     .lineCount(lineCount?.toString())
     .align(align?.toString())
     .titleAlign(titleAlign?.toString())
@@ -60,3 +61,4 @@ export const GET = async (req: Request) => {
     }
   );
 };
+
